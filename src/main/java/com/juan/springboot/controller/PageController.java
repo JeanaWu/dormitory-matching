@@ -19,14 +19,7 @@ public class PageController {
 
 
 
-    /**
-     * 学生跳转到调查问卷页面
-     */
-    @GetMapping(value="/survey")
-    public String toSurvey(){
 
-        return "stu/survey";
-    }
 
     /**
      * 学生跳转到结果页面
@@ -55,12 +48,5 @@ public class PageController {
         request.getSession().invalidate();
         return "login";
     }
-    /**
-     * 学生跳转到注册页面
-     */
-    @GetMapping(value="/signup")
-    public String toSignUp(){
 
-        return "stu/signup";
-    }
 }

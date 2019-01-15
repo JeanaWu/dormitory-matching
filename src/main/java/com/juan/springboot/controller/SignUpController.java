@@ -4,6 +4,7 @@ import com.juan.springboot.mapper.StudentMapper;
 import com.juan.springboot.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +25,18 @@ public class SignUpController {
     SignService signService;
     @Autowired
     StudentMapper studentMapper;
+    /**
+     * 学生跳转到注册页面
+     */
+    @GetMapping(value="/signup")
+    public String toSignUp(){
 
+        return "stu/signup";
+    }
+
+    /**
+     * 学生信息注册
+     */
     @PostMapping("/signup")
     public String signUp(@RequestParam("id") Integer id,
                      @RequestParam("password") String password,
