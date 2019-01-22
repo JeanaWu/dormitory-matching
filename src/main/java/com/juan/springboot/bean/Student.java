@@ -9,13 +9,7 @@ public class Student {
     private String college;
     private String department;
 
-    public StuHabits getStuHabits() {
-        return stuHabits;
-    }
 
-    public void setStuHabits(StuHabits stuHabits) {
-        this.stuHabits = stuHabits;
-    }
 
     private StuHabits stuHabits;
 

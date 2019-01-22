@@ -2,10 +2,7 @@ package com.juan.springboot.mapper;
 
 
 import com.juan.springboot.bean.Student;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
 
@@ -24,6 +21,11 @@ public interface StudentMapper {
 
     @Insert("insert into student(id,password,name,gender,birth,college,department) values(#{id},#{password},#{name},#{gender},#{birth},#{college},#{department}) ")
     public void addStudent(@Param("id") Integer id, @Param("password") String password, @Param("name")String name,
+                           @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
+                           @Param("department")String department);
+
+    @Update("update student set name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
+    public void updateInfo(@Param("id") Integer id, @Param("name")String name,
                            @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
                            @Param("department")String department);
 }

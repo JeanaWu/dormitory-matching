@@ -29,14 +29,6 @@ public class PageController {
 
         return "stu/result";
     }
-    /**
-     * 学生跳转到个人信息
-     */
-    @GetMapping(value="/info")
-    public String toInfo(){
-
-        return "stu/info";
-    }
 
     /**
      * 学生跳转到登录页面

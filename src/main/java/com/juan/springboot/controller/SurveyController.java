@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -35,19 +36,13 @@ public class SurveyController {
      */
     @PostMapping("/survey")
     public String addHabits(@RequestParam("slpTime") Integer slpTime, @RequestParam("gupTime") Integer gupTime,
-                            @RequestParam("slpNoisy") Integer slpNoisy, @RequestParam("slpHabits") Integer slpHabits,
-                            @RequestParam("clean") Integer clean, @RequestParam("games") Integer games,
-                            @RequestParam("atmos") Integer atoms, @RequestParam("characters") Integer characters, HttpSession session,
-                            Map<String, Object> map) {
-        String habitsId = surveyService.getHabitsId(session);
-        try {
-            surveyService.addsurvey(session, slpTime, gupTime, slpNoisy, slpHabits, clean, games, atoms, characters);
-        } catch (Exception e) {
-            if (habitsId != null) {
-                map.put("msg", "您已经填写过调查问卷，请勿重复填写");
-                return "/stu/survey";
-            }
-        }
-        return "Dashboard";
+                                    @RequestParam("slpNoisy") Integer slpNoisy, @RequestParam("slpHabits") Integer slpHabits,
+                                    @RequestParam("clean") Integer clean, @RequestParam("games") Integer games,
+                                    @RequestParam("atmos") Integer atoms, @RequestParam("characters") Integer characters, HttpSession session,
+                            Map<String, Object> map ) {
+
+        return surveyService.addsurvey(session, slpTime, gupTime, slpNoisy, slpHabits, clean, games, atoms, characters,map);
+
+
     }
 }

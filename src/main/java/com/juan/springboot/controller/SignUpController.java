@@ -48,17 +48,8 @@ public class SignUpController {
                          Map<String,Object> map) {
 
 //        System.out.println(id + password + name + gender + birth + college + department);
-        String stuPassword=signService.getPassword(id);
-        try {
-            //try块中放可能发生异常的代码。
-            signService.sign(id, password, name, gender, birth, college, department);
-        } catch (Exception exception) {
-            if (stuPassword!= null) {
-                map.put("emsg", "该学号已注册，若不是本人请和管理员联系");
-                return "/stu/signup";
-            }
-        }
-        map.put("msg", "注册成功,请登录");
-        return "login";
+
+       return signService.sign(id, password, name, gender, birth, college, department, map);
+
     }
 }

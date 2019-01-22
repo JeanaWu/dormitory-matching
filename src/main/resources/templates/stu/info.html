@@ -37,40 +37,46 @@
                 <!--<input type="hidden" name="_method" value="put" th:if="${emp!=null}">-->
 
                 <!--<input type="hidden" name="id" th:value="${emp.id}" th:if="${emp!=null}">-->
-                <!-- LastName -->
+                <!-- name -->
                 <div class="form-group">
-                    <label for="LastName">LastName</label>
-                    <input type="text" class="form-control" id="LastName" name="lastName" placeholder="LastName" th:value="${emp!=null}?${emp.lastName}">
+                    <label for="name">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" th:placeholder="${info.name}" th:value="${info.name}">
                 </div>
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="Email">Email</label>
-                    <input type="email" class="form-control" id="Email"  name="email" placeholder="zhangsan@163.com" th:value="${emp!=null}?${emp.email}">
-                </div>
+
+
                 <!--gender-->
                 <div class="form-group">
-                    <label >Gender</label><br/>
+                    <label >性别</label><br/>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="1" th:checked="${emp!=null}?${emp.gender}==1">
+                        <input class="form-check-input" type="radio" name="gender" value="1" th:checked="${info.gender}==1">
                         <label class="form-check-label" >男</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="0" th:checked="${emp!=null}?${emp.gender}==0">
+                        <input class="form-check-input" type="radio" name="gender" value="0" th:checked="${info.gender}==0">
                         <label class="form-check-label" >女</label>
                     </div>
                 </div>
-                <!-- department -->
+
+                <!--birth-->
                 <div class="form-group">
-                    <label >department</label>
-                    <select class="form-control"  name="department.id" >
-                        <option th:selected="${emp!=null}?${dept.id == emp.department.id}" th:each="dept:${depts}" th:value="${dept.id}" th:text="${dept.departmentName}"></option>
-                    </select>
+                    <label for="birth">出生日期</label>
+                    <input type="text" class="form-control" id="birth" th:placeholder="${#dates.format(info.birth,'yyyy-MM-dd ')}" name="birth" th:value="${info.birth}">
                 </div>
+                <!-- college-->
                 <div class="form-group">
-                    <label for="birthDate">Birth</label>
-                    <input type="text" class="form-control" id="birthDate" placeholder="2012-12-12" name="birth" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy-MM-dd HH:mm:ss')}">
+                    <label for="college">学院</label>
+                    <input type="text" class="form-control" id="college" name="college" th:placeholder="${info.college}" th:value="${info.college}">
                 </div>
-                <button type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添 加</button>
+
+                <!-- department-->
+                <div class="form-group">
+                    <label for="department">学院</label>
+                    <input type="text" class="form-control" id="department" name="department" th:placeholder="${info.department}" th:value="${info.department}">
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary" th:text="保存">保存</button>
             </form>
         </main>
     </div>
