@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.Map;
 
 @Controller
 public class InfoController {
@@ -34,8 +35,9 @@ public class InfoController {
                            @RequestParam("gender") Integer gender,
                            @RequestParam("birth") Date birth,
                            @RequestParam("college") String college,
-                           @RequestParam("department") String department){
+                           @RequestParam("department") String department,
+                           Map<String, Object> map){
 
-       return infoService.editInfo(session,name,gender,birth,college,department);
+       return infoService.editInfo(session,name,gender,birth,college,department,map);
     }
 }

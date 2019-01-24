@@ -2,8 +2,11 @@ package com.juan.springboot.mapper;
 
 
 import com.juan.springboot.bean.Student;
+import com.juan.springboot.entities.Employee;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Date;
 
 //指定这是一个操作数据库的mapper
@@ -28,4 +31,7 @@ public interface StudentMapper {
     public void updateInfo(@Param("id") Integer id, @Param("name")String name,
                            @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
                            @Param("department")String department);
+
+    @Select("select * from student")
+    public Collection<Student> getAll();
 }

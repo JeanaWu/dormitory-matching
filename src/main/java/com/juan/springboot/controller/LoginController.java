@@ -34,9 +34,9 @@ public class LoginController {
         if (000000==id && "123456".equals(password)) {
             //登录成功,防止重复提交
 //            System.out.println(getType(id));
-            session.setAttribute("loginUser", "管理员");
+            session.setAttribute("loginUser", "你好，管理员");
 
-            return "redirect:/main.html";//之后记得修改为跳转到管理员界面
+            return "adm/admain";//之后记得修改为跳转到管理员界面
         } else if (password.equals(studentMapper.findPasswordbyId(id))) {
 
             session.setAttribute("loginUser", "你好："+studentMapper.getStuByID(id).getName());
