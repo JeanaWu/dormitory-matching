@@ -27,7 +27,7 @@ public class InfoService {
     }
 
     /**
-     * 更新学生信息
+     *  学生更新学生信息
      */
     public String editInfo(HttpSession session, String name, int gender, Date birth, String college, String department, Map<String, Object> map){
         Integer id = (Integer) session.getAttribute("id");
@@ -43,5 +43,25 @@ public class InfoService {
     public void showAllInfo(Model model){
         Collection<Student> students=studentMapper.getAll();
         model.addAttribute("students",students);
+    }
+
+    /**
+     *  管理员显示学生信息
+     */
+    public String showEdit(int id,Model model){
+        System.out.println(id);
+        Student stuInfo = studentMapper.getStuByID(id);
+        model.addAttribute("stu",stuInfo);
+        return "/adm/edinfo";
+    }
+    /**
+     * 管理员保存学生信息
+     * 显示并返回全部学生信息
+     */
+    public String adSave(int id,String password,String name, int gender, Date birth, String college, String department,Model model){
+
+        studentMapper.adUpdateInfo(id,password,name,gender,birth,college,department);
+        this.showAllInfo(model);
+        return "/adm/allinfo";
     }
 }

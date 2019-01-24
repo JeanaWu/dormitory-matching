@@ -34,4 +34,11 @@ public interface StudentMapper {
 
     @Select("select * from student")
     public Collection<Student> getAll();
+
+    @Update("update student set  password=#{password},name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
+    public void adUpdateInfo(@Param("id") Integer id,@Param("password") String password, @Param("name")String name,
+                           @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
+                           @Param("department")String department);
+
+
 }

@@ -1,11 +1,13 @@
 package com.juan.springboot.bean;
 
+import java.util.Date;
+
 public class Student {
     private Integer id;
     private String name;
     private String password;
     private Integer gender;
-    private String birth;
+    private Date birth;
     private String college;
     private String department;
 
@@ -45,11 +47,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public String getBirth() {
+    public Date getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(Date birth) {
         this.birth = birth;
     }
 

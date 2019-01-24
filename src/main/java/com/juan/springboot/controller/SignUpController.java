@@ -47,7 +47,6 @@ public class SignUpController {
                      @RequestParam("department") String department,
                          Map<String,Object> map) {
 
-//        System.out.println(id + password + name + gender + birth + college + department);
 
        return signService.sign(id, password, name, gender, birth, college, department, map);
 
