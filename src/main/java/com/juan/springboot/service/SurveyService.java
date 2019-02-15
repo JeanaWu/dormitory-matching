@@ -14,7 +14,9 @@ public class SurveyService {
     HabitsMapper habitsMapper;
 
 
-
+    /**
+     * 学生问卷填写信息保存
+     */
 
     public String addsurvey(HttpSession session, Integer slpTime, Integer gupTime, Integer slpNoisy,
                             Integer slpHabits, Integer clean, Integer games, Integer atmos, Integer characters,Map<String, Object> map) {
@@ -28,6 +30,10 @@ public class SurveyService {
                 return "/stu/survey";
             }
         }
-        return "Dashboard";
+        map.put("msg","问卷填写完成");
+        return "/stu/Dashboard";
     }
+
+
+
 }

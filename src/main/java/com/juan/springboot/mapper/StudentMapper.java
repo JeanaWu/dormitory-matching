@@ -1,11 +1,13 @@
 package com.juan.springboot.mapper;
 
 
+import com.juan.springboot.bean.StuHabits;
 import com.juan.springboot.bean.Student;
 import com.juan.springboot.entities.Employee;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -41,4 +43,15 @@ public interface StudentMapper {
                            @Param("department")String department);
 
 
+    /**
+     * 获取女生信息集合
+     */
+    @Select("SELECT * from student,stu_habits where stu_habits.id=student.id AND student.gender=0")
+    public ArrayList<Student> getFemale();
+
+    /**
+     * 获取男生信息集合
+     */
+    @Select("SELECT * from student,stu_habits where stu_habits.id=student.id AND student.gender=1")
+    public ArrayList<Student> getMale();
 }

@@ -9,7 +9,7 @@ public class StuHabits {
     private Integer clean;
     private Integer games;
     private Integer atmos;
-    private Integer character;
+    private Integer characters;
 
     public Integer getId() {
         return id;
@@ -75,11 +75,26 @@ public class StuHabits {
         this.atmos = atmos;
     }
 
-    public Integer getCharacter() {
-        return character;
+    public Integer getCharacters() {
+        return characters;
     }
 
-    public void setCharacter(Integer character) {
-        this.character = character;
+    public void setCharacters(Integer characters) {
+        this.characters = characters;
+    }
+
+    @Override
+    public String toString() {
+        return "StuHabits{" +
+                "id=" + id +
+                ", slpTime=" + slpTime +
+                ", gupTime=" + gupTime +
+                ", slpNoisy=" + slpNoisy +
+                ", slpHabits=" + slpHabits +
+                ", clean=" + clean +
+                ", games=" + games +
+                ", atmos=" + atmos +
+                ", characters=" + characters +
+                '}';
     }
 }

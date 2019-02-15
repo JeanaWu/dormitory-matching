@@ -19,11 +19,11 @@ public class TsqlController {
     @Autowired
     StudentMapper studentMapper;
 
-    @GetMapping("/hbt/{id}")
-    public StuHabits getHabitsById(@PathVariable("id") Integer id){
-        return habitsMapper.getHabitsByID(id);
-
-    }
+//    @GetMapping("/hbt/{id}")
+//    public StuHabits getHabitsById(@PathVariable("id") Integer id){
+//        return habitsMapper.getHabitsByID(id);
+//
+//    }
 
     @GetMapping("/aaa/{id}")
     public Student getStudentById(@PathVariable("id") Integer id){

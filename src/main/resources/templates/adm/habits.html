@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- saved from url=(0053)https://getbootstrap.com/docs/4.1/examples/dashboard/ -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -31,38 +31,82 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
-            <!--<h2><a  href="#" th:href="@{/emp}" class="btn btn-success">添加按钮</a></h2>-->
+
             <hr>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>生日</th>
-                        <th>学院</th>
-                        <th>系</th>
-                        <th>具体操作</th>
+                        <th>睡觉时间</th>
+                        <th>起床时间</th>
+                        <th>睡觉是否打呼噜磨牙</th>
+                        <th>睡眠程度</th>
+                        <th>打扫卫生习惯</th>
+                        <th>游戏</th>
+                        <th>希望的宿舍氛围</th>
+                        <th>个人性格</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="stu:${students}">
-                            <td th:text="${stu.id}">1</td>
-                            <td th:text="${stu.name}">1</td>
-                            <td th:text="${stu.gender}==1?'男':'女'">1</td>
-                            <td th:text="${#dates.format(stu.birth,'yyyy-MM-dd')}">1</td>
-                            <td th:text="${stu.college}">1</td>
-                            <td th:text="${stu.department}">1</td>
-                            <td>
-                                <a  href="#" th:href="@{/hbt/}+${stu.id}" class="btn btn-sm btn-primary">问卷</a>
-                                <a  href="#" th:href="@{/edit/}+${stu.id}" class="btn btn-sm btn-dark" >编辑</a>
-                                <!--<button th:attr="del_uri=@{/emp/}+${emp.id}"  class="btn btn-sm btn-danger deleteBtn">删除</button>-->
-                            </td>
-                        </tr>
+                    <tr>
+                        <td th:switch="${hbt.slpTime}">
+                            <p th:case="1">晚上10点以前</p>
+                            <p th:case="2">晚上10-11点</p>
+                            <p th:case="3">晚上11-12点</p>
+                            <p th:case="4">晚上12-凌晨1点</p>
+                            <p th:case="5">凌晨1点以后</p>
+                        </td>
+
+                        <td th:switch="${hbt.gupTime}">
+                            <p th:case="1">早上7点以前</p>
+                            <p th:case="2">早上7-8点</p>
+                            <p th:case="3">早上8-9点</p>
+                            <p th:case="4">早上9点以后</p>
+                        </td>
+
+                        <td th:switch="${hbt.slpNoisy}">
+                            <p th:case="1">是</p>
+                            <p th:case="2">否</p>
+                        </td>
+
+                        <td th:switch="${hbt.slpHabits}">
+                            <p th:case="1">浅眠</p>
+                            <p th:case="2">熟睡</p>
+                        </td>
+
+                        <td th:switch="${hbt.clean}">
+                            <p th:case="1">非常脏才打扫</p>
+                            <p th:case="2">定期打扫</p>
+                            <p th:case="3">脏了就扫</p>
+                        </td>
+
+                        <td th:switch="${hbt.games}">
+                            <p th:case="1">玩</p>
+                            <p th:case="2">不玩</p>
+                        </td>
+
+                        <td th:switch="${hbt.atmos}">
+                            <p th:case="1">安静</p>
+                            <p th:case="2">无所谓</p>
+                            <p th:case="3">吵闹</p>
+                        </td>
+
+                        <td th:switch="${hbt.characters}">
+                            <p th:case="1">外向</p>
+                            <p th:case="2">内向</p>
+                        </td>
+                        <!--<td>-->
+                            <!--<a  href="#" th:href="@{/stu/}+${stu.id}" class="btn btn-sm btn-primary">问卷</a>-->
+                            <!--<a  href="#" th:href="@{/edit/}+${stu.id}" class="btn btn-sm btn-dark" >编辑</a>-->
+                            <!--&lt;!&ndash;<button th:attr="del_uri=@{/emp/}+${emp.id}"  class="btn btn-sm btn-danger deleteBtn">删除</button>&ndash;&gt;-->
+                        <!--</td>-->
+                    </tr>
                     </tbody>
                 </table>
+
             </div>
+            <hr>
+            <a  href="#" th:href="@{/allinfo}" >返回上一级</a>
         </main>
         <form id="deleteEmpForm" method="post">
             <input type="hidden" name="_method" value="delete">
@@ -83,10 +127,7 @@
     feather.replace()
 </script>
 <script>
-    $(".deleteBtn").click(function () {
-        $("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();
 
-    })
 
 </script>
 
