@@ -3,7 +3,7 @@ package com.juan.springboot.mapper;
 
 import com.juan.springboot.bean.StuHabits;
 import com.juan.springboot.bean.Student;
-import com.juan.springboot.entities.Employee;
+
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 

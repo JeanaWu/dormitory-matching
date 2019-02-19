@@ -20,4 +20,9 @@ public interface RoomMapper {
     @Select("select room,room.id,name,gender,weight,college from student,room where student.id=room.id")
     public Collection<Student> getAll();
 
+    @Select("select id from room where id=#{id};")
+    public String getIdByID(int id);
+
+    @Select("select room from room where id=#{id};")
+    public String getRoomById(int id);
 }

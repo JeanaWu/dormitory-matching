@@ -14,10 +14,16 @@ public class MatchingController {
     @Autowired
     MatchingService matchingService;
 
+    @GetMapping("/matching")
+    public String toResult(){
+       matchingService.matching();
+       return "/adm/admain";
+
+    }
+
     @GetMapping("/allresults")
     public String toResult(Model model){
-       matchingService.matching();
-       matchingService.toResult(model);
+        matchingService.toResult(model);
         return "/adm/allresults";
     }
 
