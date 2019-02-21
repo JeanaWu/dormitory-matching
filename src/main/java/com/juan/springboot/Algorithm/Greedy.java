@@ -2,12 +2,7 @@ package com.juan.springboot.Algorithm;
 
 import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.RoomMapper;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Lists;
+
 
 import java.util.*;
 
@@ -35,7 +30,6 @@ public class Greedy {
                    + students.get(i).getStuHabits().getCharacters()*2;
            System.out.println(stuWeight);
            students.get(i).setWeight(stuWeight);
-          // System.out.println("==============rrrrrrrrrr===========");
        }
     }
 
@@ -46,7 +40,7 @@ public class Greedy {
         //获取标准值
 
         Random random = new Random();
-      //  System.out.println("======11111=======");
+        //  System.out.println("======11111=======");
         for (int i=0;i<students.size();i++) {
             //获取学生的学号
             int id = students.get(i).getId();

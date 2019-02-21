@@ -40,9 +40,16 @@ public class InfoService {
     /**
      * 显示全部学生信息
      */
-    public void showAllInfo(Model model){
-        Collection<Student> students=studentMapper.getAll();
-        model.addAttribute("students",students);
+//    public Collection<Student> showAllInfo(){
+////        Collection<Student> students=studentMapper.getAll();
+////        model.addAttribute("students",students);
+//       Collection<Student> students=studentMapper.getAll();
+//       return students;
+//    }
+
+    public void showAllInfo(Model model) {
+       Collection<Student> students=studentMapper.getAll();
+      model.addAttribute("students",students);
     }
 
     /**
@@ -61,7 +68,7 @@ public class InfoService {
     public String adSave(int id,String password,String name, int gender, Date birth, String college, String department,Model model){
 
         studentMapper.adUpdateInfo(id,password,name,gender,birth,college,department);
-        this.showAllInfo(model);
+      this.showAllInfo(model);
         return "/adm/allinfo";
     }
 }
