@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ViewResolver;
 
 import java.util.Locale;
 
-@MapperScan(value="com.juan.springboot.mapper")
+@MapperScan(value="com.juan.springboot.mybatis")
 @SpringBootApplication
 public class Springboot04WebRestfulcrudApplication {
 

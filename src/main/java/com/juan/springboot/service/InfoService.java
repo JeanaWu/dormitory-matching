@@ -1,12 +1,16 @@
 package com.juan.springboot.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -47,9 +51,19 @@ public class InfoService {
 //       return students;
 //    }
 
-    public void showAllInfo(Model model) {
-       Collection<Student> students=studentMapper.getAll();
-      model.addAttribute("students",students);
+    public String showAllInfo(Model model,Integer pageNum,Integer pageSize) {
+//      ArrayList<Student> students=studentMapper.getAll();
+//      return students;
+
+        PageHelper.startPage(pageNum,pageSize);
+
+
+        ArrayList<Student>students =studentMapper.getAll();
+
+        PageInfo<Student> pageInfo= new PageInfo<>(students);
+        model.addAttribute("pageInfo",pageInfo);
+
+        return "/adm/allinfo";
     }
 
     /**
@@ -65,10 +79,12 @@ public class InfoService {
      * 管理员保存学生信息
      * 显示并返回全部学生信息
      */
-    public String adSave(int id,String password,String name, int gender, Date birth, String college, String department,Model model){
+
+    public String adSave(int id,String password,String name, int gender, Date birth, String college, String department,Model model,
+                         Integer pageNum,Integer pageSize){
 
         studentMapper.adUpdateInfo(id,password,name,gender,birth,college,department);
-      this.showAllInfo(model);
+       this.showAllInfo(model,pageNum,pageSize);
         return "/adm/allinfo";
     }
 }

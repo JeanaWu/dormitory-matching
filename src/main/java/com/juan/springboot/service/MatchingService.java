@@ -61,8 +61,15 @@ public class MatchingService {
     }
 
     public void toResult(Model model){
-        Collection<Student> students=roomMapper.getAll();
-        model.addAttribute("stu",students);
-
+        ArrayList<Student> students=roomMapper.getAll();
+//        ArrayList<Student> fstudents=new ArrayList<Student>();
+//        ArrayList<Student> mstudents=new ArrayList<Student>();
+//        for(int i=0;i<students.size();i++){
+//            if (students.get(i).getGender()==0) fstudents.add(students.get(i));
+//            else mstudents.add(students.get(i));
+//        }
+//        model.addAttribute("fstu",fstudents);
+//        model.addAttribute("mstu",mstudents);
+        model.addAttribute("student",students);
     }
 }

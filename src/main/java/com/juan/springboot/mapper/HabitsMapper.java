@@ -4,12 +4,13 @@ package com.juan.springboot.mapper;
 import com.juan.springboot.bean.StuHabits;
 import com.juan.springboot.bean.Student;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+@Mapper
 public interface HabitsMapper {
 
 

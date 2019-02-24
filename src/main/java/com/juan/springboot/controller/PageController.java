@@ -1,6 +1,5 @@
 package com.juan.springboot.controller;
 
-
 import com.juan.springboot.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,5 +39,7 @@ public class PageController {
         request.getSession().invalidate();
         return "login";
     }
-
+    /**
+     * 权限申请页面-审批页面
+     */
 }

@@ -36,8 +36,10 @@ public class EditController {
                          @RequestParam("birth") Date birth,
                          @RequestParam("college") String college,
                          @RequestParam("department") String department,
-                         Model model){
-        return infoService.adSave(id,password,name,gender,birth,college,department,model);
+                         Model model,
+                         @RequestParam(defaultValue = "1") Integer pageNum,
+                         @RequestParam(defaultValue = "10") Integer pageSize){
+        return infoService.adSave(id,password,name,gender,birth,college,department,model,pageNum,pageSize);
 
     }
 }

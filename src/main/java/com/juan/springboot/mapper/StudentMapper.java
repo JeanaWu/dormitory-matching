@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 
 //指定这是一个操作数据库的mapper
-//@Mapper
+@Mapper
 public interface StudentMapper {
 
     @Select("select * from student where id=#{id}")
@@ -35,7 +35,7 @@ public interface StudentMapper {
                            @Param("department")String department);
 
     @Select("select * from student")
-    public Collection<Student> getAll();
+    public ArrayList<Student> getAll();
 
     @Update("update student set  password=#{password},name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
     public void adUpdateInfo(@Param("id") Integer id,@Param("password") String password, @Param("name")String name,
