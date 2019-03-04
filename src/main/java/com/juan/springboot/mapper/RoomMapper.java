@@ -15,10 +15,10 @@ import java.util.Collection;
 public interface RoomMapper {
 
 
-    @Insert("insert into room(room,id,weight) values(#{room},#{id},#{weight})")
-    public void saveRoom(@Param("room") int room,@Param("id") int id,@Param("weight") int weight);
+    @Insert("insert into room(room,id,weight,building) values(#{room},#{id},#{weight},#{building} )")
+    public void saveRoom(@Param("room") int room,@Param("id") int id,@Param("weight") int weight,@Param("building") int building);
 
-    @Select("select room,room.id,name,gender,weight,college from student,room where student.id=room.id")
+    @Select("select room,room.id,building,name,gender,weight,college from student,room where student.id=room.id")
     public ArrayList<Student> getAll();
 
     @Select("select id from room where id=#{id};")
@@ -26,4 +26,13 @@ public interface RoomMapper {
 
     @Select("select room from room where id=#{id};")
     public String getRoomById(int id);
+
+    //查询表中最大的房间号
+    @Select("select max(room) from room")
+    public Integer getMaxRoom();
+
+    @Select("select room,room.id,building,name,gender,weight,college from student,room where student.id=room.id and room=#{room}")
+    public ArrayList<Student> findRoomByRoom(@Param("room") int room);
+
+
 }

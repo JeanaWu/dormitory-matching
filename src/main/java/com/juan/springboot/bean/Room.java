@@ -5,6 +5,7 @@ public class Room {
     private int room;
     private int weight;
 
+
     @Override
     public String toString() {
         return "Room{" +

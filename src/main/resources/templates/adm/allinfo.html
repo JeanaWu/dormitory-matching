@@ -56,7 +56,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="stu:${students}">
+                        <tr th:each="stu:${pageInfo.list}">
                             <td th:text="${stu.id}">1</td>
                             <td th:text="${stu.name}">1</td>
                             <td th:text="${stu.gender}==1?'男':'女'">1</td>
@@ -71,6 +71,40 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="container">
+                <div style="margin-top: 10px;">
+                    <ul id="page" class="pagination">
+                        <div class = "aad"> 当前第<span th:text="${pageInfo.pageNum} "></span>页.每页条数：<span th:text="${pageInfo.pageSize}"></span>
+                            一共 <span th:text="${pageInfo.total}"></span> 条记录</div>
+                        <li >
+                            <a th:href="@{'/allinfo?pageNum='+${pageInfo.firstPage}}" >首页</a>
+                        </li>
+                        <!--上一页-->
+                        <li  th:if="${pageInfo.hasPreviousPage}">
+                            <a  th:href="@{'/allinfo?pageNum='+${pageInfo.prePage}}"  >
+                                <i class="fa fa-angle-left"></i>&nbsp;上一页
+                            </a>
+                        </li>
+                        <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+                        <th:block th:each="nav : ${pageInfo.navigatepageNums}" >
+                            <li  th:class="${nav==pageInfo.pageNum}?'active':''" >
+                                <a th:href="@{'/allinfo?pageNum='+${nav}}"
+                                   th:text="${nav}"></a></li>
+                        </th:block>
+
+                        <th:block th:if="${pageInfo.hasNextPage}">
+                            <li>
+                                <a th:href="@{'/allinfo?pageNum='+${pageInfo.nextPage}}" > 下一页&nbsp;<i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </th:block>
+                        <li>
+                            <a th:href="@{'/allinfo?pageNum='+${pageInfo.lastPage}}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </main>
         <form id="deleteEmpForm" method="post">

@@ -1,0 +1,41 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+
+
+<configuration>
+
+    <settings>
+        <!--当返回行的所有列都是空时，MyBatis默认返回null-->
+        <setting name="returnInstanceForEmptyRow" value="true">
+        </setting>
+    </settings>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- config params as the following -->
+            <property name="dialect" value="MySQL"/>
+            <property name="rowBoundsWithCount" value="true"/>
+        </plugin>
+    </plugins>
+    <environments default="development">
+
+        <environment id="development">
+            <!--使用了 JDBC 的提交和回滚设置，它依赖于从数据源得到的连接来管理事务作用域-->
+            <transactionmanager type="JDBC">
+                <!--使用数据池，复用实例-->
+                <datasource type="POOLED">
+                    <property name="driver" value="com.mysql.jdbc.Driver">
+                        <property name="url" value="jdbc:mysql://localhost:3306/networkalbum?serverTimezone=GMT%2B8">
+                            <property name="username" value="root">
+                                <property name="password" value="root">
+                                </property>
+                            </property>
+                        </property>
+                    </property>
+                </datasource>
+            </transactionmanager>
+        </environment>
+    </environments>
+
+    <mappers>
+
+    </mappers>
+</configuration>

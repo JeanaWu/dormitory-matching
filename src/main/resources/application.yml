@@ -27,6 +27,10 @@ spring:
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-
+  mybatis:
+    check-config-location:  classpath:mybatis/mybatis-config.xml
 server:
   port: 9090
+
+
+

@@ -15,6 +15,16 @@ public class Student {
     private Integer difference;
     private Integer room;
 
+    private Integer building;
+
+    public Integer getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Integer building) {
+        this.building = building;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -29,6 +39,7 @@ public class Student {
                 ", weight=" + weight +
                 ", difference=" + difference +
                 ", room=" + room +
+                ", building=" + building +
                 '}';
     }
 

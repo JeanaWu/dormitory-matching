@@ -1,5 +1,7 @@
 package com.juan.springboot.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.juan.springboot.Algorithm.Greedy;
 import com.juan.springboot.bean.StuHabits;
 import com.juan.springboot.bean.Student;
@@ -9,6 +11,7 @@ import com.juan.springboot.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,14 +29,14 @@ public class MatchingService {
 
 
 //将男女存储到list中，进行排序，（移除已经含有room的学生）
-    public void matching(){
+    public String matching(){
         ArrayList<Student> female=studentMapper.getFemale();
         ArrayList<StuHabits> fhbt=habitsMapper.getFemale();
 
         ArrayList<Student> male=studentMapper.getMale();
         ArrayList<StuHabits> mhbt=habitsMapper.getMale();
 
-        //将已分配宿舍的学生从列表删除
+
         for(int i=0;i<female.size();i++){
 //            int id=female.get(i).getId();
 //            if(roomMapper.getIdbyID(id)!=0) female.remove(i);
@@ -57,11 +60,16 @@ public class MatchingService {
 
         greedy.getWeight(male);
         greedy.greedySelector(male,roomMapper);
+        return "/adm/admain";
 //        System.out.println("==================");
     }
 
-    public void toResult(Model model){
-        ArrayList<Student> students=roomMapper.getAll();
+    public void toResult(Model model, Integer pageNum,Integer pageSize ){
+        PageHelper.startPage(pageNum,pageSize);
+        ArrayList<Student>students =roomMapper.getAll();
+        PageInfo<Student> pageInfo=new PageInfo<>(students);
+//        ArrayList<Student> students=roomMapper.getAll();
+//        System.out.println(students);
 //        ArrayList<Student> fstudents=new ArrayList<Student>();
 //        ArrayList<Student> mstudents=new ArrayList<Student>();
 //        for(int i=0;i<students.size();i++){
@@ -70,6 +78,6 @@ public class MatchingService {
 //        }
 //        model.addAttribute("fstu",fstudents);
 //        model.addAttribute("mstu",mstudents);
-        model.addAttribute("student",students);
+        model.addAttribute("pageInfo",pageInfo);
     }
 }
