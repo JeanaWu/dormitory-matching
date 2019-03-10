@@ -42,4 +42,13 @@ public class PageController {
     /**
      * 权限申请页面-审批页面
      */
+
+    /**
+     * 跳转到宿舍管理页面
+     * @return
+     */
+    @GetMapping(value="/dormitory")
+    public String toDormitory(){
+        return "/adm/dormitory";
+    }
 }

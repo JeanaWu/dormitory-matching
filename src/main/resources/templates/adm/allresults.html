@@ -73,10 +73,13 @@
                             <div class="form-group form-inline" style="margin-top:15px" >
 
                               宿舍号<input type="text" class="form-control" id="findRoom" th:name="findRoom" >
-                                <div class="col-sm-4" style="text-align:left;">
+                                <div class="col-md-1" style="text-align:left;">
                                     <button class="btn btn-success" >查询</button>
                                 </div>
 
+                            <div class="col-md-1">
+                                <button class="btn btn-success" th:href="@{/inform}">通知结果</button>
+                            </div>
 
                                 <!--<div class="col-sm-3" style="text-align:left;">-->
                                     <!--<button type="button" style="margin-left:10px" id="btn_query" class="btn btn-primary">通知学生-->
