@@ -15,41 +15,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class allInfoController {
     @Autowired
     InfoService infoService;
     /**
-     * 页面跳转至显示全部学生信息
+     * 查询并显示全部学生信息
      */
+    @ResponseBody
     @GetMapping(value="/allinfo")
-    public String  toAllInfo(Model model, @RequestParam(defaultValue = "1") Integer pageNum,
-                             @RequestParam(defaultValue = "10") Integer pageSize ){
-//        PageHelper.startPage(pageNum,pageSize);
-//
-//
-//        ArrayList<Student>students =infoService.showAllInfo();
-//
-//        PageInfo<Student> pageInfo= new PageInfo<>(students);
-//        model.addAttribute("pageInfo",pageInfo);
-//
-//        return "/adm/allinfo";
-        return infoService.showAllInfo(model,pageNum,pageSize);
-
+    public Map toAllInfo( ){
+        ArrayList<Student> students=infoService.showAllInfo();
+        Map<String,Object> map= new HashMap<>();
+        map.put("total",students.size());
+        map.put("rows",students);
+        return map;
     }
-//    @ResponseBody
-//    @GetMapping(value="/allinfo")
-//    public Collection<Student> toAllInfo(){
-//        return infoService.showAllInfo();
-//    }
-
-
-
-
-
-
-
-
 
 }

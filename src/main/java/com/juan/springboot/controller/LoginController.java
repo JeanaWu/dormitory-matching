@@ -1,12 +1,17 @@
 package com.juan.springboot.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.StudentMapper;
+import com.juan.springboot.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 import static java.lang.Character.getType;
@@ -19,36 +24,21 @@ import static java.lang.Character.getType;
 @Controller
 public class LoginController {
     @Autowired
-    StudentMapper studentMapper;
+    LoginService loginService;
 //    /**
 //     * 编写方法判断id类型
 //     */
 //    public static String getType(Object o){ //获取变量类型方法
 //        return o.getClass().toString(); //使用int类型的getClass()方法
 //    }
-    @PostMapping(value ="/user/login")
-    public String login(@RequestParam("id")int id,
-                        @RequestParam("password")String password,
-                        Map<String,Object> map,
-                        HttpSession session) {
-        if (000000==id && "123456".equals(password)) {
-            //登录成功,防止重复提交
-//            System.out.println(getType(id));
-            session.setAttribute("loginUser", "你好，管理员");
-
-            return "adm/admain";//之后记得修改为跳转到管理员界面
-        } else if (password.equals(studentMapper.findPasswordbyId(id))) {
-
-            session.setAttribute("loginUser", "你好："+studentMapper.getStuByID(id).getName());
-            session.setAttribute("id",id);
-            return "redirect:/main.html";
-        } else if (studentMapper.findPasswordbyId(id) == null) {
-
-            map.put("msg", "用户不存在");
-            return "login";
-        } else {
-            map.put("msg", "用户名密码错误");
-            return "login";
-        }
+    @ResponseBody
+    @RequestMapping(value = "/logIn", method = RequestMethod.POST)
+    public Object login(@RequestBody String requestString) {
+        Student student=new Gson().fromJson(requestString, new TypeToken<Student>(){}.getType());
+        Integer id=student.getId();
+        String password=student.getPassword();
+        Object o = JSONObject.toJSON(loginService.login(id,password));
+        System.out.println(o);
+       return o;
     }
 }

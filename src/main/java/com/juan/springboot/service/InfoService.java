@@ -1,5 +1,6 @@
 package com.juan.springboot.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.juan.springboot.bean.Student;
@@ -10,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class InfoService {
@@ -44,47 +42,41 @@ public class InfoService {
     /**
      * 显示全部学生信息
      */
-//    public Collection<Student> showAllInfo(){
-////        Collection<Student> students=studentMapper.getAll();
-////        model.addAttribute("students",students);
-//       Collection<Student> students=studentMapper.getAll();
-//       return students;
-//    }
-
-    public String showAllInfo(Model model,Integer pageNum,Integer pageSize) {
-//      ArrayList<Student> students=studentMapper.getAll();
-//      return students;
-
-        PageHelper.startPage(pageNum,pageSize);
-
-
+    public ArrayList<Student> showAllInfo() {
         ArrayList<Student>students =studentMapper.getAll();
+        return students;
 
-        PageInfo<Student> pageInfo= new PageInfo<>(students);
-        model.addAttribute("pageInfo",pageInfo);
 
-        return "/adm/allinfo";
     }
 
     /**
      *  管理员显示学生信息
      */
-    public String showEdit(int id,Model model){
+    public Student showEdit(int id){
         System.out.println(id);
         Student stuInfo = studentMapper.getStuByID(id);
-        model.addAttribute("stu",stuInfo);
-        return "/adm/edinfo";
+      return stuInfo;
     }
     /**
      * 管理员保存学生信息
      * 显示并返回全部学生信息
      */
 
-    public String adSave(int id,String password,String name, int gender, Date birth, String college, String department,Model model,
-                         Integer pageNum,Integer pageSize){
+    public Map adSave(Integer id, String password, String name, Integer gender, Date birth, String college, String department) {
+        Map<String, Object> map = new HashMap<>();
+        try {
 
-        studentMapper.adUpdateInfo(id,password,name,gender,birth,college,department);
-       this.showAllInfo(model,pageNum,pageSize);
-        return "/adm/allinfo";
+                studentMapper.adUpdateInfo(id, password, name, gender, birth, college, department);
+                map.put("msg", "学生信息更新成功");
+
+                return map;
+
+        } catch (Exception e) {
+            map.put("msg", "学生信息更新失败");
+
+            return map;
+        }
     }
+
+
 }

@@ -47,4 +47,10 @@ public interface HabitsMapper {
     @Select("SELECT * from student,stu_habits where stu_habits.id=student.id AND student.gender=1")
     public ArrayList<StuHabits> getMale();
 
+    /**
+     * 获取已填问卷学生数量
+     */
+    @Select("select count(*) from stu_habits")
+    public Integer getNum();
+
 }

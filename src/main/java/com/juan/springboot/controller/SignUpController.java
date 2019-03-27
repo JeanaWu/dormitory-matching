@@ -1,23 +1,20 @@
 package com.juan.springboot.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.StudentMapper;
 import com.juan.springboot.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 学生基本的注册功能，将数据存放在数据库中
- * 需要完善：
- *
- *         id不唯一的时候返回错误提示  √
- *         注册界面的美化
- */
+
 @Controller
 public class SignUpController {
 
@@ -25,30 +22,27 @@ public class SignUpController {
     SignService signService;
     @Autowired
     StudentMapper studentMapper;
-    /**
-     * 学生跳转到注册页面
-     */
-    @GetMapping(value="/signup")
-    public String toSignUp(){
-
-        return "stu/signup";
-    }
 
     /**
      * 学生信息注册
      */
+    @ResponseBody
     @PostMapping("/signup")
-    public String signUp(@RequestParam("id") Integer id,
-                     @RequestParam("password") String password,
-                     @RequestParam("name") String name,
-                     @RequestParam("gender") Integer gender,
-                     @RequestParam("birth") Date birth,
-                     @RequestParam("college") String college,
-                     @RequestParam("department") String department,
-                         Map<String,Object> map) {
+    public Object signUp( @RequestBody String requestString) {
 
+        Student student=new Gson().fromJson(requestString, new TypeToken<Student>(){}.getType());
 
-       return signService.sign(id, password, name, gender, birth, college, department, map);
+        Integer id=student.getId();
+        String password=student.getPassword();
+        String name=student.getName();
+        Integer gender=student.getGender();
+        Date birth=student.getBirth();
+        String college=student.getCollege();
+        String department=student.getDepartment();
+        Map<String,Object> map=new HashMap<>();
 
+        Object o = JSONObject.toJSON(signService.sign(id,password, name, gender, birth, college, department,map));
+        System.out.println(o);
+        return o;
     }
 }

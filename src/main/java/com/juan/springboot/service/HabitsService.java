@@ -1,6 +1,7 @@
 package com.juan.springboot.service;
 
 import com.juan.springboot.bean.StuHabits;
+import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.HabitsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,9 @@ public class HabitsService {
     HabitsMapper habitsMapper;
 
 
-    public String getHabits(Model model,int id){
+    public StuHabits getHabits(int id){
         StuHabits hbt=habitsMapper.getHabitsByID(id);
-        model.addAttribute("hbt",hbt);
-        return "/adm/habits";
+      return hbt;
+
     }
 }

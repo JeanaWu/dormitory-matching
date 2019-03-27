@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>基于greedy算法的宿舍管理系统</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+</head>
+<body>
+<div class="page">
+    <!-- Main Navbar-->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+
+                        <div class="brand-text d-none d-lg-inline-block">
+                            <span><strong>基于greedy算法的宿舍管理系统</strong> </span></div>
+
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center ">
+
+                        <li class="nav-item"><a href="login.html" class="nav-link logout" id="logout" > <span
+                                class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center">
+                <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="title">
+                    <h1 class="h4">学生账户</h1>
+                    <p id="id">学生</p>
+                </div>
+            </div>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+            <ul class="list-unstyled">
+                <li><a href="stuIndex.html"> <i class="icon-home"></i>主页 </a></li>
+
+                <li><a href="#studentMangement" aria-expanded="true" data-toggle="collapse" > <i class="icon-interface-windows"></i>学生信息 </a>
+                    <ul id="studentMangement" class="collapse list-unstyled ">
+                        <!--<li ><a href="forms.html" >学生注册</a></li>-->
+                        <li class="active"><a href="Survey.html">问卷调查</a></li>
+                        <li><a href="stuEdit.html">学生信息修改</a> </li>
+
+                    </ul>
+                </li>
+                <li ><a href="stuInformation.html"><i class="icon-search"></i> 宿舍查询</a></li>
+
+                <!--<li><a href="#dormitoryManagement" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>宿舍管理 </a>-->
+                <!--<ul id="dormitoryManagement" class="collapse list-unstyled ">-->
+                <!--<li><a href="mMatching.html"><i class="icon-padnote"></i>男生宿舍分配</a></li>-->
+                <!--<li><a href="fMatching.html"><i class="icon-grid"></i>女生宿舍分配</a></li>-->
+                <!--&lt;!&ndash;<li><a href="#">Page</a></li>&ndash;&gt;-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </nav>
+        <div class="content-inner">
+            <!--Page Header-->
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">编辑学生信息</h2>
+                </div>
+            </header>
+            <!--Breadcrumb-->
+            <div class="breadcrumb-holder container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">主页</a></li>
+                    <li class="breadcrumb-item">学生管理</li>
+                    <li class="breadcrumb-item"><a href="tables.html">学生信息</a>        </li>
+                    <li class="breadcrumb-item active">编辑学生信息        </li>
+                </ul>
+            </div>
+            <!-- Forms Section-->
+            <section class="forms">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-close">
+                                    <div class="dropdown">
+                                        <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                        <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                                    </div>
+                                </div>
+                                <div class="card-header d-flex align-items-center">
+                                    <h3 class="h4">学生信息表</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form-horizontal" name="information" id="information" >
+
+                                        <div class="row">
+                                            <label class="col-sm-3 form-control-label">学生基本信息</label>
+                                            <div class="col-sm-9">
+                                                <div class="form-group-material">
+                                                    <input id="name" type="text" name="name" required class="input-material">
+                                                    <label for="name" class="label-material active">姓名</label>
+                                                </div>
+                                                <!--<div class="form-group-material">-->
+                                                <!--<input id="id" type="text" name="id" required class="input-material">-->
+                                                <!--<label for="id" class="label-material">学号     </label>-->
+                                                <!--</div>-->
+                                                <div class="form-group-material">
+                                                    <input id="password" type="text" name="password" required class="input-material">
+                                                    <label for="password" class="label-material active">密码   </label>
+                                                </div>
+                                                <!--生日-->
+                                                <div class="form-group-material ">
+                                                    <input id="birth" type="date" name="birth" required class="date input-material" >
+
+                                                </div>
+                                                <div >
+                                                    <div>
+                                                        <input  type="radio" value="1" name="gender" >
+                                                        <label >男</label>
+
+                                                        <input  type="radio" value="0" name="gender">
+                                                        <label >女</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="line"></div>
+                                        <!--学院-->
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">学院</label>
+                                            <div class="col-sm-9">
+                                                <select name="college" class="form-control mb-3 selector" id="college">
+                                                    <option >外语学院</option>
+                                                    <option >数学与统计学院</option>
+                                                    <option>经济管理学院</option>
+                                                    <option>信息学院</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!--系-->
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">系</label>
+                                            <div class="col-sm-9">
+                                                <select name="department" class="form-control mb-3" id="department">
+                                                    <option>商务英语</option><option>同声翻译</option><option>小语种</option><option>日语</option><option>法语</option>
+                                                    <option>数学与应用数学</option><option>信息与计算科学</option><option>统计学</option>
+                                                    <option>会计</option><option>经济学</option><option>金融</option><option>工商管理</option>
+                                                    <option>计算机科学</option><option>软件工程</option><option>信息系统与管理</option><option>电子商务</option><option>数学与应用数学</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="line"></div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 offset-sm-3">
+                                                <!--<button type="submit" class="btn btn-secondary">Cancel</button>-->
+                                                <button  type="button" class="btn btn-primary" id="btn_update" >更新</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Page Footer-->
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>宿舍匹配系统 &copy; 2017-2019</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>Design by Bootstrapious.More Templates <a target="_blank" title="wujuan">武隽</a> </p>
+                            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/stuEdit.js"></script>
+<!-- Main File-->
+<script src="js/front.js"></script>
+</body>
+</html>

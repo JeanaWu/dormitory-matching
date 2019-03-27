@@ -1,11 +1,14 @@
 package com.juan.springboot.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.juan.springboot.bean.StuHabits;
+import com.juan.springboot.bean.Student;
 import com.juan.springboot.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.tree.VoidDescriptor;
 
 import javax.servlet.http.HttpSession;
@@ -20,29 +23,26 @@ import java.util.Map;
 public class SurveyController {
     @Autowired
     SurveyService surveyService;
-
-    /**
-     * 学生跳转到调查问卷页面
-     */
-    @GetMapping(value="/survey")
-    public String toSurvey(){
-
-        return "stu/survey";
-    }
-
-
     /**
      * 学生调查问卷信息添加
      */
-    @PostMapping("/survey")
-    public String addHabits(@RequestParam("slpTime") Integer slpTime, @RequestParam("gupTime") Integer gupTime,
-                                    @RequestParam("slpNoisy") Integer slpNoisy, @RequestParam("slpHabits") Integer slpHabits,
-                                    @RequestParam("clean") Integer clean, @RequestParam("games") Integer games,
-                                    @RequestParam("atmos") Integer atoms, @RequestParam("characters") Integer characters, HttpSession session,
-                            Map<String, Object> map ) {
+    @ResponseBody
+    @PostMapping("/addSurvey")
+    public Object addHabits(@RequestBody String requestString) {
+       StuHabits stuHabits=new Gson().fromJson(requestString, new TypeToken<StuHabits>(){}.getType());
+       Integer id=stuHabits.getId();
+       Integer slpTime=stuHabits.getSlpTime();
+       Integer gupTime=stuHabits.getGupTime();
+       Integer slpNoisy=stuHabits.getSlpNoisy();
+       Integer slpHabits=stuHabits.getSlpHabits();
+       Integer clean=stuHabits.getClean();
+       Integer games=stuHabits.getGames();
+       Integer atoms=stuHabits.getAtmos();
+       Integer characters=stuHabits.getCharacters();
 
-        return surveyService.addsurvey(session, slpTime, gupTime, slpNoisy, slpHabits, clean, games, atoms, characters,map);
-
+       Object o = JSONObject.toJSON(surveyService.addSurvey(id,slpTime, gupTime, slpNoisy, slpHabits, clean, games, atoms, characters));
+        System.out.println(o);
+        return o;
 
     }
 }

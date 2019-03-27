@@ -24,6 +24,9 @@ public interface StudentMapper {
     @Select("select password from student where id=#{id}")
     public String findPasswordbyId( Integer id);
 
+    @Select("select id from student where id=#{id}")
+    public Integer findIdbyId( Integer id);
+
     @Insert("insert into student(id,password,name,gender,birth,college,department) values(#{id},#{password},#{name},#{gender},#{birth},#{college},#{department}) ")
     public void addStudent(@Param("id") Integer id, @Param("password") String password, @Param("name")String name,
                            @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
@@ -44,14 +47,17 @@ public interface StudentMapper {
 
 
     /**
-     * 获取女生信息集合
+     * 获取女生信息集合，没有填写问卷的学生无法被选择
      */
     @Select("SELECT * from student,stu_habits where stu_habits.id=student.id AND student.gender=0")
     public ArrayList<Student> getFemale();
 
     /**
-     * 获取男生信息集合
+     * 获取男生信息集合，没有填写问卷的学生无法被选择
      */
     @Select("SELECT * from student,stu_habits where stu_habits.id=student.id AND student.gender=1")
     public ArrayList<Student> getMale();
+
+    @Select("select count(*) from student")
+    public Integer getNum();
 }
