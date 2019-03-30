@@ -26,7 +26,7 @@ public class SignService {
 
             }else{
             studentMapper.addStudent(id, password, name, gender, birth, college, department);
-            map.put("msg", "注册成功,请登录");
+            map.put("msg", "注册成功");
 
 
             }

@@ -1,3 +1,6 @@
+//用户退出并删除cookie
+
+
 $("#logout").click(function () {
     clearCookie('stuID');
     alert("用户退出");

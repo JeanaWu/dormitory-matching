@@ -1,22 +1,27 @@
 $(function () {
-    var id = location.href.substr(location.href.indexOf("#") + 1);
+    if(getCookie('stuID')) {
+        var id = location.href.substr(location.href.indexOf("#") + 1);
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:9090/edit/" + id,
-        dataType: "json",
-        success: function (result) {
-            var date = getDate(result.birth);
-            var college = result.college;
-            var department = result.department;
-            $("#name").val(result.name);
-            $("#password").val(result.password);
-            $("#birth").val(date);
-            $("input[name='gender'][value='" + result.gender + "']").attr("checked", true);
-            $("#college").find("option:contains('" + college + "')").attr("selected", true);
-            $("#department").find("option:contains('" + department + "')").attr("selected", true);
-        }
-    })
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:9090/edit/" + id,
+            dataType: "json",
+            success: function (result) {
+                var date = getDate(result.birth);
+                var college = result.college;
+                var department = result.department;
+                $("#name").val(result.name);
+                $("#password").val(result.password);
+                $("#birth").val(date);
+                $("input[name='gender'][value='" + result.gender + "']").attr("checked", true);
+                $("#college").find("option:contains('" + college + "')").attr("selected", true);
+                $("#department").find("option:contains('" + department + "')").attr("selected", true);
+            }
+        })
+    }else {
+        window.location.href="http://localhost:9090/login.html";
+        alert("请先登录");
+    }
 });
 
 function getDate(nS) {

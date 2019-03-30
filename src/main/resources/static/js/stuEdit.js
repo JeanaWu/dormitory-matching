@@ -1,6 +1,7 @@
 $(function () {
-    var id = getCookie('stuID');
 
+    var id = getCookie('stuID');
+    if(id){
     $.ajax({
         type: "GET",
         url: "http://localhost:9090/edit/" + id,
@@ -16,7 +17,11 @@ $(function () {
             $("#college").find("option:contains('" + college + "')").attr("selected", true);
             $("#department").find("option:contains('" + department + "')").attr("selected", true);
         }
-    })
+    })}else{
+
+        window.location.href="http://localhost:9090/login.html";
+        alert("请先登录");
+    }
 });
 
 function getDate(nS) {

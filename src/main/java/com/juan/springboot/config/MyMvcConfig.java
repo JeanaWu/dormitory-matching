@@ -20,21 +20,18 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-//                registry.addViewController("/").setViewName("login");
-//                registry.addViewController("/index.html").setViewName("login");
-//                registry.addViewController("/main.html").setViewName("/stu/Dashboard");
-//                registry.addViewController("/admain.html").setViewName("/adm/admain");
+
                 registry.addViewController( "/" ).setViewName( "forward:/login.html" );  //设置默认主页
                 registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
                 super.addViewControllers( registry );
             }
-            //注册拦截器
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                //静态资源 css js 已经做好了静态资源映射
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
-                        excludePathPatterns("/index.html","/","/user/login","/signup","/signOut","/login.html");
-            }
+//            注册拦截器
+//            @Override
+//            public void addInterceptors(InterceptorRegistry registry) {
+////                静态资源 css js 已经做好了静态资源映射
+//                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
+//                        excludePathPatterns("/login.html","/","/druid");
+//            }
         };
         return adapter;
     }

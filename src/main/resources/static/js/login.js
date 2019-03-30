@@ -7,6 +7,7 @@ $(document).ready(function () {
         var id=$("#id").val();
         var password=$("#password").val();
 
+        //登录点击按钮生成cookie，stuID
         setCookie('stuID',id,1);
         $.ajax({
             type:'POST',
@@ -14,7 +15,8 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",//如果想以json格式把数据提交到后台的话，这个必须有，否则只会当做表单提交
             data: JSON.stringify({
                 "id":id,
-                "password":password
+                "password":password,
+
             }),
             dataType:"json",
             success:function (result) {
@@ -48,10 +50,5 @@ $(document).ready(function () {
 
 
 
-function setCookie(c_name, value, expiredays) {
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + expiredays);
-    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "": ";expires=" + exdate.toGMTString());
-}
 
 

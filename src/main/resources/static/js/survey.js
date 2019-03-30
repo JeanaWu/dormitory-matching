@@ -1,6 +1,11 @@
 $(function () {
+   if(getCookie('stuID')){
+
+   }else{
 
 
+    window.location.href="http://localhost:9090/login.html";}
+    alert("请先登录");
 });
 
 function CheckNull() {

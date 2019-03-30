@@ -1,4 +1,5 @@
 $(function () {
+    if(getCookie('stuID')){
     $.ajax({
         url:"http://localhost:9090/homeInfo",
         method:"get",
@@ -14,5 +15,8 @@ $(function () {
             $("#information").text(result.information);
         }
 
-    })
+    })}else {
+        window.location.href="http://localhost:9090/login.html";
+        alert("请先登录");
+    }
 })

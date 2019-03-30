@@ -1,13 +1,16 @@
 $(function () {
+    if (getCookie('stuID')) {
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
 
-    //1.初始化Table
-    var oTable = new TableInit();
-    oTable.Init();
-
-    //2.初始化Button的点击事件
-    var oButtonInit = new ButtonInit();
-    oButtonInit.Init();
-
+        //2.初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
+    } else {
+        window.location.href = "http://localhost:9090/login.html";
+        alert("请先登录");
+    }
 });
 
 
