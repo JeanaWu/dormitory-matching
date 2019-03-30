@@ -1,6 +1,6 @@
 package com.juan.springboot.config;
 
-import com.juan.springboot.component.LoginHandlerInterceptor;
+
 import com.juan.springboot.component.MyLocalResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
