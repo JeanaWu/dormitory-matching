@@ -1,5 +1,5 @@
 $(function () {
-    if (getCookie('stuID')) {
+    if (getCookie('stuID')=="000000") {
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
@@ -8,7 +8,7 @@ $(function () {
         var oButtonInit = new ButtonInit();
         oButtonInit.Init();
     } else {
-        window.location.href = "http://localhost:9090/login.html";
+        window.location.href = "http://39.108.37.4:9090/login.html";
         alert("请先登录");
     }
 });
@@ -19,7 +19,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#information').bootstrapTable({
-            url: 'http://localhost:9090/allInformation',         //请求后台的URL（*）
+            url: 'http://39.108.37.4:9090/allInformation',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -104,7 +104,7 @@ $(document).ready(function () {
         var  content=$("#content").val();
         $.ajax({
             type: 'POST',
-            url: "http://localhost:9090/Information",
+            url: "http://39.108.37.4:9090/Information",
             contentType: "application/json",//如果想以json格式把数据提交到后台的话，这个必须有，否则只会当做表单提交
             data: JSON.stringify({
                 "date": date,
@@ -127,7 +127,7 @@ $(document).ready(function () {
 
 var  deleteInfo = function (value) {
     $.ajax({
-        url:"http://localhost:9090/deleteInformation",
+        url:"http://39.108.37.4:9090/deleteInformation",
         method:'POST',
         contentType: "application/json;charset=utf-8",
         data:JSON.stringify({

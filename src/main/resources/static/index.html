@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
@@ -21,6 +22,16 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!---bootstraptable-->
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <!--位置要正确，因为第二个文件引用了第一个文件-->
+    <script src="vendor/popper.js/umd/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/bootstrap-table-zh-CN.js"></script>
+
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -153,6 +164,29 @@
                 </div>
             </section>
 
+            <section class="dashboard-counts no-padding-bottom ">
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                <div class="articles card">
+                    <div class="card-close">
+                        <div class="dropdown">
+                            <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                            <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                        </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                        <h2 class="h3">未填写问卷学生 </h2>
+                        <div class="badge badge-rounded bg-green"><lable id="totalStu"></lable> </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="unfinished"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </section>
             <!-- Page Footer-->
             <footer class="main-footer">
                 <div class="container-fluid">
@@ -171,9 +205,9 @@
     </div>
 </div>
 <!-- JavaScript files-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/umd/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
 <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>

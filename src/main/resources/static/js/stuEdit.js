@@ -4,30 +4,35 @@ $(function () {
     if(id){
     $.ajax({
         type: "GET",
-        url: "http://localhost:9090/edit/" + id,
+        url: "http://39.108.37.4:9090/edit/" + id,
         dataType: "json",
         success: function (result) {
-            var date = getDate(result.birth);
+            var birthdata = new Date(result.birth);
+            var birthmonth = ((birthdata.getMonth() + 1).toString().length == 1) ? ("0" + (birthdata.getMonth() + 1).toString()) : ((birthdata.getMonth() + 1));
+            var birthday = (birthdata.getDate().toString().length == 1) ? ("0" + birthdata.getDate()) : birthdata.getDate();
+            var birth= birthdata.getUTCFullYear() + "-" + birthmonth + "-" + birthday;
             var college = result.college;
             var department = result.department;
             $("#name").val(result.name);
             $("#password").val(result.password);
-            $("#birth").val(date);
+            // document.getElementById('birth').valueAsDate(result.birth);
+            $("#birth").attr("value", birth);
             $("input[name='gender'][value='" + result.gender + "']").attr("checked", true);
             $("#college").find("option:contains('" + college + "')").attr("selected", true);
             $("#department").find("option:contains('" + department + "')").attr("selected", true);
         }
     })}else{
 
-        window.location.href="http://localhost:9090/login.html";
+        window.location.href="http://39.108.37.4:9090/login.html";
         alert("请先登录");
     }
 });
+//
+// function getDate(nS) {
+//     return new Date(parseInt(nS)).toLocaleDateString().replace(/\//g, "-");
+// }
 
-function getDate(nS) {
-    return new Date(parseInt(nS)).toLocaleDateString().replace(/\//g, "-");
-}
-
+//更新
 $(document).ready(function () {
     $("#btn_update").click( function(){
         var id = getCookie('stuID');
@@ -41,7 +46,7 @@ $(document).ready(function () {
         if (checkEdit()) {
             $.ajax({
                 type: 'POST',
-                url: "http://localhost:9090/editInfo/" + id,
+                url: "http://39.108.37.4:9090/stuEdit/" + id,
                 contentType: "application/json;charset=utf-8",//如果想以json格式把数据提交到后台的话，这个必须有，否则只会当做表单提交
                 data: JSON.stringify({
                     "name": name,
@@ -54,11 +59,14 @@ $(document).ready(function () {
                 dataType: "JSON",
                 success: function (result) {
                     alert(result.msg);
+                    window.location.href = "http://39.108.37.4:9090/stuEdit.html";
                 },
                 error: function (err) {
+                    alert("err");
+                    window.location.href = "http://39.108.37.4:9090/stuEdit.html";
                 }
             });
-            window.location.href = "http://localhost:9090/stuEdit.html";
+
         }
     })
 });

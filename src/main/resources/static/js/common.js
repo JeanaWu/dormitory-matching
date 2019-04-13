@@ -6,7 +6,9 @@ $("#logout").click(function () {
     alert("用户退出");
 });
 
+$(function(){
 
+});
 
 $("#id").text("学号:"+getCookie('stuID'));
 

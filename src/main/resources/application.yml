@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/domitary?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    password: admin123!
+    url: jdbc:mysql://39.108.37.4:3306/dormitory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 初始化大小，最小，最大om.mysql.cj.jdbc.Driver

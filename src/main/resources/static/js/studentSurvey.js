@@ -1,10 +1,10 @@
 $(function () {
-    if (getCookie('stuID')) {
+    if (getCookie('stuID')=="000000") {
         var id = location.href.substr(location.href.indexOf("#") + 1);
 
         $.ajax({
             type: "GET",//请求方式
-            url: "http://localhost:9090/survey/" + id,//地址，就是json文件的请求路径
+            url: "http://39.108.37.4:9090/survey/" + id,//地址，就是json文件的请求路径
             dataType: "json",//数据类型可以为 text xml json  script  jsonp
             success: function (result) {//返回的参数就是 action里面所有的有get和set方法的参数
                 switch (result.gupTime) {
@@ -105,7 +105,7 @@ $(function () {
         });
     } else {
 
-        window.location.href = "http://localhost:9090/login.html";
+        window.location.href = "http://39.108.37.4:9090/login.html";
         alert("请先登录");
 
     }

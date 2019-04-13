@@ -1,5 +1,5 @@
 $(function () {
-    if (getCookie('stuID')) {
+    if (getCookie('stuID')=="000000") {
 
         $(document).ready(function () {
             $("#btn_signUp").click( function(){
@@ -13,7 +13,7 @@ $(function () {
 
                 $.ajax({
                     type: 'POST',
-                    url: "http://localhost:9090/signup",
+                    url: "http://39.108.37.4:9090/signup",
                     contentType: "application/json",//如果想以json格式把数据提交到后台的话，这个必须有，否则只会当做表单提交
                     data: JSON.stringify({
                         "name": name,
@@ -38,7 +38,7 @@ $(function () {
             });
         });
     }else {
-        window.location.href = "http://localhost:9090/login.html";
+        window.location.href = "http://39.108.37.4:9090/login.html";
         alert("请先登录");
     }
 });

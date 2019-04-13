@@ -42,6 +42,28 @@ public class EditController {
         Student student=new Gson().fromJson(requestString, new TypeToken<Student>(){}.getType());
 //        System.out.println(student);
 //        System.out.println(id);
+        Integer newId=student.getId();
+        String password=student.getPassword();
+        String name=student.getName();
+        Integer gender=student.getGender();
+        Date birth=student.getBirth();
+        String college=student.getCollege();
+        String department=student.getDepartment();
+        Object o = JSONObject.toJSON(infoService.adSave(newId,id,password,name,gender,birth,college,department));
+      return o;
+
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/stuEdit/{id}", method = RequestMethod.POST)
+    public Object stuSave (@PathVariable("id") int id,
+                          @RequestBody String requestString
+    ){
+//        System.out.println(requestString);
+        Student student=new Gson().fromJson(requestString, new TypeToken<Student>(){}.getType());
+//        System.out.println(student);
+//        System.out.println(id);
+        Integer newId=student.getId();
         String password=student.getPassword();
         String name=student.getName();
         Integer gender=student.getGender();
@@ -49,7 +71,7 @@ public class EditController {
         String college=student.getCollege();
         String department=student.getDepartment();
         Object o = JSONObject.toJSON(infoService.adSave(id,password,name,gender,birth,college,department));
-      return o;
+        return o;
 
     }
 

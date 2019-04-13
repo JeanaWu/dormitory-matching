@@ -1,5 +1,5 @@
 $(function () {
-    if (getCookie('stuID')) {
+    if (getCookie('stuID')=="000000") {
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
@@ -9,7 +9,7 @@ $(function () {
         oButtonInit.Init();
     }
     else {
-        window.location.href = "http://localhost:9090/login.html";
+        window.location.href = "http://39.108.37.4:9090/login.html";
         alert("请先登录");
     }
 
@@ -21,7 +21,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#dormitory').bootstrapTable({
-            url: 'http://localhost:9090/fAllResults',         //请求后台的URL（*）
+            url: 'http://39.108.37.4:9090/fAllResults',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -124,7 +124,7 @@ var ButtonInit = function () {
 $(document).ready(function() {
     $("#btn_matching").click(function () {
         $.ajax({
-            url: "http://localhost:9090/fMatch",
+            url: "http://39.108.37.4:9090/fMatch",
             success: function (result) {
                 $("#dormitory").bootstrapTable('refresh');
                 alert("宿舍分配成功");

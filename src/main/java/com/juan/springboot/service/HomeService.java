@@ -1,5 +1,6 @@
 package com.juan.springboot.service;
 
+import com.juan.springboot.bean.Student;
 import com.juan.springboot.mapper.HabitsMapper;
 import com.juan.springboot.mapper.InformationMapper;
 import com.juan.springboot.mapper.RoomMapper;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +36,10 @@ public class HomeService {
         map.put("dormitory",roomNum);
         map.put("information",infoNum);
         return  map;
+    }
+
+    public ArrayList<Student> unfinishedInfo(){
+        return studentMapper.getUnfinished();
     }
 
 

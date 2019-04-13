@@ -57,16 +57,38 @@ public class InfoService {
         Student stuInfo = studentMapper.getStuByID(id);
       return stuInfo;
     }
+
+    /**
+     * 学生员保存学生信息
+     * 显示并返回全部学生信息
+     */
+    public Map adSave(Integer id, String password, String name, Integer gender, Date birth, String college, String department) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+
+            studentMapper.UpdateInfo(id, password, name, gender, birth, college, department);
+            map.put("msg", "学生信息更新成功");
+
+            return map;
+
+        } catch (Exception e) {
+            map.put("msg", "学生信息更新失败");
+
+            return map;
+        }
+    }
+
+
     /**
      * 管理员保存学生信息
      * 显示并返回全部学生信息
      */
 
-    public Map adSave(Integer id, String password, String name, Integer gender, Date birth, String college, String department) {
+    public Map adSave(Integer newId,Integer id, String password, String name, Integer gender, Date birth, String college, String department) {
         Map<String, Object> map = new HashMap<>();
         try {
 
-                studentMapper.adUpdateInfo(id, password, name, gender, birth, college, department);
+                studentMapper.adUpdateInfo(newId,id, password, name, gender, birth, college, department);
                 map.put("msg", "学生信息更新成功");
 
                 return map;

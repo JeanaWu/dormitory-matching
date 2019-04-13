@@ -9,7 +9,7 @@ $(function () {
     oButtonInit.Init();}
     else {
 
-       window.location.href="http://localhost:9090/login.html";
+       window.location.href="http://39.108.37.4:9090/login.html";
        alert("请先登录");
    }
 
@@ -22,7 +22,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#roommates').bootstrapTable({
-            url: "http://localhost:9090/roommates/"+id,         //请求后台的URL（*）
+            url: "http://39.108.37.4:9090/roommates/"+id,         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色

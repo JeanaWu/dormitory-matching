@@ -40,12 +40,15 @@ public interface StudentMapper {
     @Select("select * from student")
     public ArrayList<Student> getAll();
 
-    @Update("update student set  password=#{password},name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
-    public void adUpdateInfo(@Param("id") Integer id,@Param("password") String password, @Param("name")String name,
+    @Update("update student set id=#{newId},password=#{password},name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
+    public void adUpdateInfo(@Param("newId") Integer newId,@Param("id") Integer id,@Param("password") String password, @Param("name")String name,
                            @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
                            @Param("department")String department);
 
-
+    @Update("update student set password=#{password},name=#{name},gender=#{gender},birth=#{birth},college=#{college},department=#{department} where id=#{id} ")
+    public void UpdateInfo(@Param("id") Integer id,@Param("password") String password, @Param("name")String name,
+                             @Param("gender")Integer gender,@Param("birth") Date birth, @Param("college")String college,
+                             @Param("department")String department);
     /**
      * 获取女生信息集合，没有填写问卷的学生无法被选择
      */
@@ -60,4 +63,10 @@ public interface StudentMapper {
 
     @Select("select count(*) from student")
     public Integer getNum();
+
+    /**
+     * 获取未填写问卷的学生
+     */
+    @Select("select distinct * from student where student.id not in(select id from stu_habits)")
+    public ArrayList<Student> getUnfinished();
 }

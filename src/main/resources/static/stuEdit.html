@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
@@ -56,7 +57,7 @@
         <nav class="side-navbar">
             <!-- Sidebar Header-->
             <div class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="avatar"><img src="img/student.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
                     <h1 class="h4">学生账户</h1>
                     <p id="id">学生</p>
@@ -76,13 +77,7 @@
                 </li>
                 <li ><a href="stuInformation.html"><i class="icon-search"></i> 宿舍查询</a></li>
 
-                <!--<li><a href="#dormitoryManagement" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>宿舍管理 </a>-->
-                <!--<ul id="dormitoryManagement" class="collapse list-unstyled ">-->
-                <!--<li><a href="mMatching.html"><i class="icon-padnote"></i>男生宿舍分配</a></li>-->
-                <!--<li><a href="fMatching.html"><i class="icon-grid"></i>女生宿舍分配</a></li>-->
-                <!--&lt;!&ndash;<li><a href="#">Page</a></li>&ndash;&gt;-->
-                <!--</ul>-->
-                <!--</li>-->
+
             </ul>
         </nav>
         <div class="content-inner">
@@ -118,7 +113,7 @@
                                     <h3 class="h4">学生信息表</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form-horizontal" name="information" id="information" >
+                                    <form class="form-horizontal" name="information" id="information" method="post">
 
                                         <div class="row">
                                             <label class="col-sm-3 form-control-label">学生基本信息</label>
@@ -127,17 +122,14 @@
                                                     <input id="name" type="text" name="name" required class="input-material">
                                                     <label for="name" class="label-material active">姓名</label>
                                                 </div>
-                                                <!--<div class="form-group-material">-->
-                                                <!--<input id="id" type="text" name="id" required class="input-material">-->
-                                                <!--<label for="id" class="label-material">学号     </label>-->
-                                                <!--</div>-->
+
                                                 <div class="form-group-material">
                                                     <input id="password" type="text" name="password" required class="input-material">
                                                     <label for="password" class="label-material active">密码   </label>
                                                 </div>
                                                 <!--生日-->
                                                 <div class="form-group-material ">
-                                                    <input id="birth" type="date" name="birth" required class="date input-material" >
+                                                    <input id="birth" type="date" name="birth" required class="date-holder input-material" >
 
                                                 </div>
                                                 <div >
@@ -152,9 +144,6 @@
 
                                             </div>
                                         </div>
-
-
-
                                         <div class="line"></div>
                                         <!--学院-->
                                         <div class="form-group row">
@@ -186,7 +175,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-4 offset-sm-3">
                                                 <!--<button type="submit" class="btn btn-secondary">Cancel</button>-->
-                                                <button  type="button" class="btn btn-primary" id="btn_update" >更新</button>
+                                                <a class="btn btn-primary" id="btn_update" >更新</a>
                                             </div>
                                         </div>
                                     </form>
@@ -214,7 +203,7 @@
     </div>
 </div>
 <!-- JavaScript files-->
-<script src="vendor/jquery/jquery.min.js"></script>
+
 <script src="vendor/popper.js/umd/popper.min.js"> </script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
