@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 public class MyLocalResolver implements LocaleResolver {
-
     //解析区域信息
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
